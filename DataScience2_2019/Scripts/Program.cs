@@ -13,27 +13,9 @@ namespace DataScience2_2019.Scripts
         {
             Reader reader = new Reader();
 
-            List<List<double>> wineData = reader.Read();
+            List<DataPoint> Datapoints = reader.Read();
 
-            List<DataPoint> points = new List<DataPoint>();
-
-            foreach (List<double> customer in wineData)
-            {
-                List<double> pos = new List<double>();
-                for (int i = 0; i < customer.Count; i++)
-                {
-
-                    pos.Add(customer[i]);
-                    //if (customer[i] == 1)
-                    //{
-                        
-                    //}
-                }
-
-                points.Add(new DataPoint(wineData.IndexOf(customer), pos.ToArray()));
-            }
-
-            KMeans kmeans = new KMeans(5, 100, points);
+            KMeans kmeans = new KMeans(5, 100, Datapoints);
             kmeans.Cluster();
 
             List<Cluster> clusters = kmeans.GetClusters();
