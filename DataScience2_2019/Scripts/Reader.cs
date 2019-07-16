@@ -11,14 +11,32 @@ namespace DataScience2_2019.Scripts
     {
         List<List<double>> wineData = new List<List<double>>();
 
-        public List<DataPoint> Read()
+        public List<DataPoint> getDataPoints()
+        {
+            List<DataPoint> datapoints = new List<DataPoint>();
+
+            if (wineData.Count < 100) Read();
+            foreach (List<double> customer in wineData)
+            {
+                List<double> pos = new List<double>();
+                for (int i = 0; i < customer.Count; i++)
+                {
+                    pos.Add(customer[i]);
+                }
+                datapoints.Add(new DataPoint(wineData.IndexOf(customer), pos.ToArray()));
+            }
+
+            return datapoints;
+        }
+
+        public void Read()
         {
             StreamReader reader = new StreamReader("C:/Users/jacob/source/repos/DataScience2_2019/DataScience2_2019/resources/WineData.csv");
 
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    wineData.Add(new List<double>());
-            //}
+            for (int i = 0; i < 100; i++)
+            {
+                wineData.Add(new List<double>());
+            }
 
             List<DataPoint> datapoints = new List<DataPoint>();
             int iteration = 0;
@@ -28,35 +46,13 @@ namespace DataScience2_2019.Scripts
                 string line = reader.ReadLine();
                 string[] values = line.Split(',');
 
-                List<double> pos = new List<double>();
                 for (int i = 0; i < values.Length; i++)
                 {
-                    pos.Add(double.Parse(values[i]));
-                    //wineData[i].Add(double.Parse(values[i]));
+                    wineData[i].Add(double.Parse(values[i]));
                 }
-                datapoints.Add(new DataPoint(iteration, pos.ToArray()));
                 iteration += 1;
             }
             reader.Close();
-
-            return datapoints;
         }
-
-        //public List<DataPoint> getDataPoints()
-        //{
-        //    List<DataPoint> datapoints = new List<DataPoint>();
-
-        //    foreach (List<double> customer in wineData)
-        //    {
-        //        List<double> pos = new List<double>();
-        //        for (int i = 0; i < customer.Count; i++)
-        //        {
-        //            pos.Add(customer[i]);
-        //        }
-        //        datapoints.Add(new DataPoint(wineData.IndexOf(customer), pos.ToArray()));
-        //    }
-
-        //    return datapoints;
-        //}
     }
 }

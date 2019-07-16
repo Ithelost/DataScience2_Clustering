@@ -13,25 +13,27 @@ namespace DataScience2_2019.Scripts
         {
             Reader reader = new Reader();
 
-            List<DataPoint> Datapoints = reader.Read();
+            List<DataPoint> Datapoints = reader.getDataPoints();
 
-            KMeans kmeans = new KMeans(5, 100, Datapoints);
+            KMeans kmeans = new KMeans(3, 100, Datapoints);
             kmeans.Cluster();
 
             List<Cluster> clusters = kmeans.GetClusters();
 
-            Console.WriteLine($"\nLowest SSE : {kmeans.LowestSSE} \n");
+            Console.WriteLine($"\n Lowest SSE : {kmeans.LowestSSE} \n");
+
             foreach (Cluster cluster in clusters)
             {
+                Console.WriteLine($"Printing a cluster");
                 for (int i = 0; i < cluster.DataPoints.Count; i++)
                 {
-                    Console.WriteLine($"Klantnr: {cluster.DataPoints[i].Id} cluster {cluster.Id}");
+                    Console.WriteLine($"Klantnr: {cluster.DataPoints[i].Id} cluster id {cluster.Id}");
                 }
                 Console.Write("\n");
             }
 
-            //TopDeals topdeals = new TopDeals(clusters);
-            //topdeals.PrintTopDeals();
+            TopDeals topdeals = new TopDeals(clusters);
+            topdeals.PrintTopDeals();
             Console.ReadLine();
         }
 

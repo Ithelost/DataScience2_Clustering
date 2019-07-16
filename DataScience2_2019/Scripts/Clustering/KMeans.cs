@@ -84,6 +84,8 @@ namespace DataScience2_2019.Scripts
             SSE sse = new SSE();
             for (int i = 0; i < clusters.Count; i++)
             {
+                //Console.WriteLine("cluster size" + clusters[i].DataPoints.Count + "");
+
                 double[] pos = new double[dataPoints[0].Position.Length];
                 for (int j = 0; j < clusters[i].DataPoints.Count; j++)
                 {
@@ -117,7 +119,7 @@ namespace DataScience2_2019.Scripts
         private void SaveClusters(int i)
         {
             double sse = new SSE().Calculate(clusters);
-            Console.WriteLine($"{i} SSE : {sse}");
+            Console.WriteLine("Save cluster: " + $"{i} SSE : {sse}");
             if (sse < lowestSSE)
             {
                 lowestSSE = sse;

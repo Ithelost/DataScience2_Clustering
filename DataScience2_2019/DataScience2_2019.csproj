@@ -49,9 +49,9 @@
     <Compile Include="Scripts\Clustering\KMeans.cs" />
     <Compile Include="Scripts\Clustering\SSE.cs" />
     <Compile Include="Scripts\Clustering\TopDeals.cs" />
-    <Compile Include="Scripts\DistanceFormula\Cousin.cs" />
-    <Compile Include="Scripts\DistanceFormula\Euclidean.cs" />
-    <Compile Include="Scripts\DistanceFormula\IDistance.cs" />
+    <Compile Include="Scripts\DistanceFormulas\Cousin.cs" />
+    <Compile Include="Scripts\DistanceFormulas\Euclidean.cs" />
+    <Compile Include="Scripts\DistanceFormulas\IDistance.cs" />
     <Compile Include="Scripts\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Reader.cs" />
